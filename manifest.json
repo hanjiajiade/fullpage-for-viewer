@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "Fullpage Screenshot",
+  "description": "Capture full page, visible area, selected area, or specific element screenshots. Auto-download as PNG.",
+  "version": "1.0.0",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["lib/html2canvas.min.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "capture-full": {
+      "suggested_key": {
+        "default": "Alt+Shift+F"
+      },
+      "description": "Capture full page screenshot"
+    },
+    "capture-visible": {
+      "suggested_key": {
+        "default": "Alt+Shift+V"
+      },
+      "description": "Capture visible area screenshot"
+    },
+    "capture-area": {
+      "suggested_key": {
+        "default": "Alt+Shift+A"
+      },
+      "description": "Capture selected area screenshot"
+    },
+    "capture-element": {
+      "suggested_key": {
+        "default": "Alt+Shift+E"
+      },
+      "description": "Capture element screenshot"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
